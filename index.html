@@ -1,0 +1,162 @@
+
+<html>
+    <head>
+        
+        
+        <style>
+            @page {
+                size: A4;
+                margin: 15px;
+            }
+            #pdf {
+                width: 8.27in;
+                height: 11.69in;
+               
+                
+                
+                
+            }
+            #pdf .rightFloat {
+                float: right;
+            
+                
+            }
+            #pdf .leftFloat {
+                float: left;
+                
+            }
+            #pdf .header {
+                
+                height: 200px;
+                
+            
+                text-align: center;
+               
+                
+                
+            }
+            .Title {
+                line-height: 200px;
+                
+                font-size: 40px;
+               
+            }
+            .subTitle {
+               
+               
+               
+                
+                font-size: 25px;
+            }
+            
+        </style>
+
+    </head>
+    <body>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <input type="text" name="name" id="namee" placeholder="Name:" >
+        <br><br><br><br><br><input type="text" name="id" id="idd" placeholder="ID:">
+    <br><br><br><input type="text" name="section" id="section" placeholder="Section:">
+    <br><br><input type="checkbox" id="coloro" name="color" value="true"> <label for="color">Color</label>
+    <br><br><br><button onclick="demoFromHTML()">Download assignment cover page pdf</button>
+    <br>if not worked click again.
+
+        <script>
+          function demoFromHTML() {
+            let namee=document.getElementById("namee").value;
+            let idd=document.getElementById("idd").value;
+            let section=document.getElementById("section").value;
+var doc = new jsPDF('p', 'pt', 'a4');
+        
+
+    doc.setFontSize(40);
+
+var img1 = new Image();
+if(document.getElementById("coloro").checked){
+    img1.src = 'CSE.jpg';
+}
+else{
+    img1.src = 'b&w cse.jpg';
+}
+
+var img2 = new Image();
+if(document.getElementById("coloro").checked){
+    img2.src = 'Varendra_University_Rajshahi.jpg';
+}
+else{
+    img2.src = 'b&w vu.jpg';
+}
+
+
+doc.addImage(img2, "JPEG", 20, 20, 70, 90);
+doc.addImage(img1, "JPEG", 500, 20, 70, 90);
+doc.setFont("Arial");
+doc.text("Varendra University", 120, 70);
+doc.setFontSize(20);
+doc.setFont("Courier");
+doc.text("Depertment of Computer Science and Engineering", 20, 125);
+doc.line(10, 130, 590, 130);
+doc.setFont("Arial");
+doc.text("Assignment on", 220,200);
+doc.line(190, 210, 380, 210);
+doc.setFontSize(10);
+doc.text("Assignment #1", 245,220);
+doc.setFontSize(15);
+doc.setFont(undefined, 'bold').text("Course Title: ", 100, 300).setFont(undefined, 'normal') ;
+
+
+doc.text("Object Oriented Design and Paterns", 220, 300,['center']);
+doc.setFont(undefined, 'bold').text("Course Code: ", 40, 350).setFont(undefined, 'normal') ;
+
+
+
+doc.text("CSE 213", 145, 350);
+doc.setFont(undefined, 'bold').text("Submission Date: ", 250, 350).setFont(undefined, 'normal');
+doc.text("5 October, 2023", 400, 350);
+
+doc.rect(20, 270, 550, 100);
+
+doc.setFont(undefined, 'bold').text("Submitted by", 30, 590).setFont(undefined, 'normal');
+doc.line(30, 595, 150, 595);
+doc.setFont(undefined, 'bold').text("Name: ", 30, 620).setFont(undefined, 'normal');
+doc.text(namee, 100, 620);
+doc.setFont(undefined, 'bold').text("ID: ", 30, 640).setFont(undefined, 'normal');
+doc.text(idd,100, 640);
+doc.setFont(undefined, 'bold').text("Section: ", 30, 660).setFont(undefined, 'normal');
+doc.text(section, 100, 660);
+doc.setFont(undefined, 'bold').text("Batch: ", 30, 680).setFont(undefined, 'normal');
+doc.text("30th", 100, 680);
+doc.text("Dept. of CSE", 30, 700);
+
+doc.setFont(undefined, 'bold').text("Submitted to", 400, 590).setFont(undefined, 'normal');
+doc.line(400, 595, 550, 595);
+doc.setFont(undefined, 'bold').text("Md. Nour Noby", 400, 620).setFont(undefined, 'normal');
+doc.text("Lecturer", 400, 640);
+doc.text("Dept. of CSE", 400, 660);
+
+
+
+
+
+
+
+
+
+
+console.log(doc.getFontList());
+
+doc.save("JavaAssignment.pdf");
+
+
+// var iframe = document.createElement('iframe');
+// iframe.setAttribute('style', 'position:absolute;right:0;top:0;bottom:0;height:100%;width:50%;');
+// document.body.appendChild(iframe);
+// iframe.src = doc.output('datauristring');
+}
+
+        </script>
+
+    </body>
+</html>
