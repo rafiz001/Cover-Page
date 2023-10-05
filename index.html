@@ -59,11 +59,36 @@
         <input type="text" name="name" id="namee" placeholder="Name:" >
         <br><br><br><br><br><input type="text" name="id" id="idd" placeholder="ID:">
     <br><br><br><input type="text" name="section" id="section" placeholder="Section:">
-    <br><br><input type="checkbox" id="coloro" name="color" value="true"> <label for="color">Color</label>
-    <br><br><br><button onclick="demoFromHTML()">Download assignment cover page pdf</button>
+    <br><br><input type="checkbox" id="coloro" name="color" value="checked" oninput="colorF(this)"> <label for="coloro//">Color</label>
+    <br><br><br><button id="submit-btn" onclick="demoFromHTML()">Download assignment cover page pdf</button>
     <br>if not worked click again.
 
         <script>
+             var img1 = new Image();
+             var img2 = new Image();
+             img1.src = 'b&w cse.jpg';
+             img2.src = 'b&w vu.jpg';
+            function colorF(colorE){
+               
+                
+if(colorE.checked){
+    img1.src = 'CSE.jpg';
+}
+else{
+    img1.src = 'b&w cse.jpg';
+}
+
+
+if(colorE.checked){
+    img2.src = 'Varendra_University_Rajshahi.jpg';
+}
+else{
+    img2.src = 'b&w vu.jpg';
+}
+            }
+            function cengterOffset(params,doc,params2="") {
+                return ((doc.internal.pageSize.width / 2) - (doc.getStringUnitWidth(params) * doc.internal.getFontSize() / 2))+(doc.getStringUnitWidth(params2) * doc.internal.getFontSize() / 2);
+            }
           function demoFromHTML() {
             let namee=document.getElementById("namee").value;
             let idd=document.getElementById("idd").value;
@@ -73,41 +98,34 @@ var doc = new jsPDF('p', 'pt', 'a4');
 
     doc.setFontSize(40);
 
-var img1 = new Image();
-if(document.getElementById("coloro").checked){
-    img1.src = 'CSE.jpg';
-}
-else{
-    img1.src = 'b&w cse.jpg';
-}
-
-var img2 = new Image();
-if(document.getElementById("coloro").checked){
-    img2.src = 'Varendra_University_Rajshahi.jpg';
-}
-else{
-    img2.src = 'b&w vu.jpg';
-}
 
 
-doc.addImage(img2, "JPEG", 20, 20, 70, 90);
-doc.addImage(img1, "JPEG", 500, 20, 70, 90);
+doc.roundedRect(20, 20, doc.internal.pageSize.width - 40, doc.internal.pageSize.height - 40,7,7, 'S');
+doc.addImage(img2, "JPEG", 24, 22, 70, 90);
+doc.addImage(img1, "JPEG", 500, 22, 70, 90);
 doc.setFont("Arial");
-doc.text("Varendra University", 120, 70);
+doc.text("Varendra University", 122, 72);
 doc.setFontSize(20);
 doc.setFont("Courier");
-doc.text("Depertment of Computer Science and Engineering", 20, 125);
-doc.line(10, 130, 590, 130);
+doc.text("Depertment of Computer Science and Engineering", 20, 127);
+doc.line(20, 132, doc.internal.pageSize.width - 20, 132);
+doc.line(20, 134, doc.internal.pageSize.width - 20, 134);
+
 doc.setFont("Arial");
-doc.text("Assignment on", 220,200);
-doc.line(190, 210, 380, 210);
+var text = "Assignment on";
+doc.text(text, cengterOffset(text,doc), 200);
+doc.line(210, 210, 380, 210);
 doc.setFontSize(10);
-doc.text("Assignment #1", 245,220);
+var text = "Assignment #1";
+doc.text(text, cengterOffset(text,doc), 220);
+
 doc.setFontSize(15);
-doc.setFont(undefined, 'bold').text("Course Title: ", 100, 300).setFont(undefined, 'normal') ;
+var text = "Course Title: ";
+var text2= "Object Oriented Design and Design Patterns";
+doc.setFont(undefined, 'bold').text(text, cengterOffset(text+text2,doc), 300).setFont(undefined, 'normal') ;
 
 
-doc.text("Object Oriented Design and Design Patterns", 220, 300,['center']);
+doc.text(text2, cengterOffset(text2,doc,text), 300,['center']);
 doc.setFont(undefined, 'bold').text("Course Code: ", 40, 350).setFont(undefined, 'normal') ;
 
 
@@ -116,7 +134,7 @@ doc.text("CSE 213", 145, 350);
 doc.setFont(undefined, 'bold').text("Submission Date: ", 250, 350).setFont(undefined, 'normal');
 doc.text("5 October, 2023", 400, 350);
 
-doc.rect(20, 270, 550, 100);
+doc.rect(30, 270, doc.internal.pageSize.width - 60, 100);
 
 doc.setFont(undefined, 'bold').text("Submitted by", 30, 590).setFont(undefined, 'normal');
 doc.line(30, 595, 150, 595);
@@ -147,15 +165,15 @@ doc.text("Dept. of CSE", 400, 660);
 
 //console.log(doc.getFontList());
 
-doc.save("JavaAssignment.pdf");
+// doc.save("JavaAssignment.pdf");
 
 
-// var iframe = document.createElement('iframe');
-// iframe.setAttribute('style', 'position:absolute;right:0;top:0;bottom:0;height:100%;width:50%;');
-// document.body.appendChild(iframe);
-// iframe.src = doc.output('datauristring');
+var iframe = document.createElement('iframe');
+iframe.setAttribute('style', 'position:absolute;right:0;top:0;bottom:0;height:100%;width:50%;');
+document.body.appendChild(iframe);
+iframe.src = doc.output('datauristring');
 }
-
+//$("#submit-btn").click();
         </script>
 
     </body>
