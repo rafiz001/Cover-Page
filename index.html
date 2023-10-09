@@ -2,8 +2,15 @@
 <html>
     <head>
         
-        
+        <meta charset="UTF-8">
+        <title>Assignment Cover Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--bootstrap 4 cdn with js-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
         <style>
+            
             @page {
                 size: A4;
                 margin: 15px;
@@ -56,14 +63,48 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <input type="text" name="name" id="namee" placeholder="Name:" >
-        <br><br><br><br><br><input type="text" name="id" id="idd" placeholder="ID:">
-    <br><br><br><input type="text" name="section" id="section" placeholder="Section:">
-    <br><br><input type="checkbox" id="coloro" name="color" value="checked" oninput="colorF(this)"> <label for="coloro//">Color</label>
-    <br><br><br><button id="submit-btn" onclick="demoFromHTML()">Download assignment cover page pdf</button>
-    <br>if not worked click again.
+        <br><div class=" text-white bg-secondary container-fluid card form-group col-12 col-sm-5"><div class="card-header">Assignment Cover Page</div>
+        <div class="card-body">
+            <label for="namee">Your Name</label>
+        <input type="text" class="form-control" name="name" id="namee" placeholder="Md. Rafiz Uddin" >
+       
+        <label for="idd">Your ID</label>
+        <input class="form-control" type="text" class="form-" name="id" id="idd" placeholder="222311079">
+        <label for="section">Your Section</label>
+        <input type="text" class="form-control" name="section" id="section" placeholder="B">
+        <label for="batch">Your Batch</label>
+        <input type="text" class="form-control" name="batch" id="batch" placeholder="30th">
+        <label for="cTitle">Cource Title</label>
+        <input type="text" class="form-control" name="cTitle" id="cTitle" value="Object Oriented Design and Design Patterns
+        ">
+        <label for="cCode">Cource Code</label>
+        <input type="text" class="form-control" name="cCode" id="cCode" value="CSE 213">
 
+        <label for="date">Submission Date</label>
+        <input type="text" class="form-control" name="date" id="date" value="10 October, 2023">
+        <label for="topic">Assignment Topic</label>
+        <input type="text" class="form-control" name="topic" id="topic" value="Assignment #1">
+        <label for="tName">Teacher Name</label>
+        <input type="text" class="form-control" name="tName" id="tName" value="Md. Nour Noby">
+        <label for="tDesig">Teacher Designation</label>
+        <input type="text" class="form-control" name="tDesig" id="tDesig" value="Lecturer">
+        <label for="tDept">Teacher Depertment</label>
+        <input type="text" class="form-control" name="tDept" id="tDept" value="Dept. of CSE">
+        
+        
+        
+        
+        
+        
+           <br> <div class="form-check">   
+                 <input class="form-check-input"  type="checkbox" id="coloro" name="color" value="checked" oninput="colorF(this)">
+    <label for="coloro" class="form-check-label">Colored logo  </label></div><br>
+
+    <button id="submit-btn" class="btn btn-success" onclick="demoFromHTML()">Download assignment cover page pdf</button>
+    <br>if not worked click again.
+</div></div>
         <script>
+         
              var img1 = new Image();
              var img2 = new Image();
              img1.src = 'b&w cse.jpg';
@@ -93,6 +134,19 @@ else{
             let namee=document.getElementById("namee").value;
             let idd=document.getElementById("idd").value;
             let section=document.getElementById("section").value;
+            let batch=document.getElementById("batch").value;
+            let cTitle=document.getElementById("cTitle").value;
+            let cCode=document.getElementById("cCode").value;
+            let date=document.getElementById("date").value;
+            let topic=document.getElementById("topic").value;
+            let tName=document.getElementById("tName").value;
+            let tDesig=document.getElementById("tDesig").value;
+            let tDept=document.getElementById("tDept").value;
+            
+            
+            
+            
+            
 var doc = new jsPDF('p', 'pt', 'a4');
         
 
@@ -116,12 +170,12 @@ var text = "Assignment on";
 doc.text(text, cengterOffset(text,doc), 200);
 doc.line(210, 210, 380, 210);
 doc.setFontSize(10);
-var text = "Assignment #1";
+var text = topic;
 doc.text(text, cengterOffset(text,doc), 220);
 
 doc.setFontSize(15);
 var text = "Course Title: ";
-var text2= "Object Oriented Design and Design Patterns";
+var text2= cTitle;
 doc.setFont(undefined, 'bold').text(text, cengterOffset(text+text2,doc), 300).setFont(undefined, 'normal') ;
 
 
@@ -130,9 +184,9 @@ doc.setFont(undefined, 'bold').text("Course Code: ", 40, 350).setFont(undefined,
 
 
 
-doc.text("CSE 213", 145, 350);
+doc.text(cCode, 145, 350);
 doc.setFont(undefined, 'bold').text("Submission Date: ", 250, 350).setFont(undefined, 'normal');
-doc.text("5 October, 2023", 400, 350);
+doc.text(date, 400, 350);
 
 doc.rect(30, 270, doc.internal.pageSize.width - 60, 100);
 
@@ -150,9 +204,9 @@ doc.text("Dept. of CSE", 30, 700);
 
 doc.setFont(undefined, 'bold').text("Submitted to", 400, 590).setFont(undefined, 'normal');
 doc.line(400, 595, 550, 595);
-doc.setFont(undefined, 'bold').text("Md. Nour Noby", 400, 620).setFont(undefined, 'normal');
-doc.text("Lecturer", 400, 640);
-doc.text("Dept. of CSE", 400, 660);
+doc.setFont(undefined, 'bold').text(tName, 400, 620).setFont(undefined, 'normal');
+doc.text(tDesig, 400, 640);
+doc.text(tDept, 400, 660);
 
 
 
@@ -165,13 +219,13 @@ doc.text("Dept. of CSE", 400, 660);
 
 //console.log(doc.getFontList());
 
-// doc.save("JavaAssignment.pdf");
+doc.save("JavaAssignment.pdf");
 
 
-var iframe = document.createElement('iframe');
-iframe.setAttribute('style', 'position:absolute;right:0;top:0;bottom:0;height:100%;width:50%;');
-document.body.appendChild(iframe);
-iframe.src = doc.output('datauristring');
+// var iframe = document.createElement('iframe');
+// iframe.setAttribute('style', 'position:absolute;right:0;top:0;bottom:0;height:100%;width:50%;');
+// document.body.appendChild(iframe);
+// iframe.src = doc.output('datauristring');
 }
 //$("#submit-btn").click();
         </script>
