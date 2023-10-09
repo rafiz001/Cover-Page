@@ -6,6 +6,9 @@
         <title>Assignment Cover Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--bootstrap 4 cdn with js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -61,9 +64,7 @@
     </head>
     <body>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <br><div class=" text-white bg-secondary container-fluid card form-group col-12 col-sm-5"><div class="card-header">Assignment Cover Page</div>
+       <br><div class=" text-white bg-secondary container-fluid card form-group col-12 col-sm-5"><div class="card-header">Assignment Cover Page</div>
         <div class="card-body">
             <label for="namee">Your Name</label>
         <input type="text" class="form-control" name="name" id="namee" placeholder="Md. Rafiz Uddin" >
@@ -72,6 +73,8 @@
         <input class="form-control" type="text" class="form-" name="id" id="idd" placeholder="222311079">
         <label for="section">Your Section</label>
         <input type="text" class="form-control" name="section" id="section" placeholder="B">
+        <label for="semester">Your Semester</label>
+        <input type="text" class="form-control" name="semester" id="semester" placeholder="4th">
         <label for="batch">Your Batch</label>
         <input type="text" class="form-control" name="batch" id="batch" placeholder="30th">
         <label for="cTitle">Cource Title</label>
@@ -134,6 +137,7 @@ else{
             let namee=document.getElementById("namee").value;
             let idd=document.getElementById("idd").value;
             let section=document.getElementById("section").value;
+            let semester=document.getElementById("semester").value;
             let batch=document.getElementById("batch").value;
             let cTitle=document.getElementById("cTitle").value;
             let cCode=document.getElementById("cCode").value;
@@ -196,11 +200,13 @@ doc.setFont(undefined, 'bold').text("Name: ", 30, 620).setFont(undefined, 'norma
 doc.text(namee, 100, 620);
 doc.setFont(undefined, 'bold').text("ID: ", 30, 640).setFont(undefined, 'normal');
 doc.text(idd,100, 640);
-doc.setFont(undefined, 'bold').text("Section: ", 30, 660).setFont(undefined, 'normal');
+doc.setFont(undefined, 'bold').text("Sec: ", 30, 660).setFont(undefined, 'normal');
 doc.text(section, 100, 660);
-doc.setFont(undefined, 'bold').text("Batch: ", 30, 680).setFont(undefined, 'normal');
-doc.text(batch, 100, 680);
-doc.text("Dept. of CSE", 30, 700);
+doc.setFont(undefined, 'bold').text("Sem: ", 30, 680).setFont(undefined, 'normal');
+doc.text(semester, 100, 680);
+doc.setFont(undefined, 'bold').text("Batch: ", 30, 700).setFont(undefined, 'normal');
+doc.text(batch, 100, 700);
+doc.text("Dept. of CSE", 30, 720);
 
 doc.setFont(undefined, 'bold').text("Submitted to", 400, 590).setFont(undefined, 'normal');
 doc.line(400, 595, 550, 595);
@@ -219,7 +225,7 @@ doc.text(tDept, 400, 660);
 
 //console.log(doc.getFontList());
 
-doc.save("JavaAssignment.pdf");
+doc.save("AssignmentCover.pdf");
 
 
 // var iframe = document.createElement('iframe');
